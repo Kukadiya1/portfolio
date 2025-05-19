@@ -1,0 +1,66 @@
+<footer class="bg-dark-800 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+
+            <!-- Logo and Description -->
+            <div class="md:col-span-2">
+                <div class="flex items-center mb-4">
+                    <lucide-angular [img]="codeIcon" class="h-6 w-6 text-primary-500 mr-2"></lucide-angular>
+                    <span class="text-xl font-semibold font-poppins">{{dataService.logo}}</span>
+                </div>
+                <p class="text-gray-400 mb-4 max-w-md">
+                    A professional developer portfolio showcasing my work, skills, and services.
+                    Let's collaborate and build something amazing together.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="{{dataService.linkdinUrl}}" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+                        aria-label="LinkedIn" (mouseenter)="scaleUp($event)" (mouseleave)="scaleDown($event)">
+                        <lucide-angular [img]="linkedinIcon" size="20"></lucide-angular>
+                    </a>
+                    <a href="{{dataService.githubUrl}}" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-primary-500 transition-colors duration-300" aria-label="GitHub"
+                        (mouseenter)="scaleUp($event)" (mouseleave)="scaleDown($event)">
+                        <lucide-angular [img]="githubIcon" size="20"></lucide-angular>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4 text-white font-poppins">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a (click)="scrollTo('hero')"
+                            class="text-gray-400 hover:text-primary-500 cursor-pointer">Home</a></li>
+                    <li><a (click)="scrollTo('about')"
+                            class="text-gray-400 hover:text-primary-500 cursor-pointer">About</a></li>
+                    <li><a (click)="scrollTo('projects')"
+                            class="text-gray-400 hover:text-primary-500 cursor-pointer">Projects</a></li>
+                    <li><a (click)="scrollTo('contact')"
+                            class="text-gray-400 hover:text-primary-500 cursor-pointer">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4 text-white font-poppins">Contact Info</h3>
+                <ul class="space-y-2">
+                    <li class="text-gray-400">{{dataService.location}}</li>
+                    <li class="text-gray-400">{{dataService.email}}</li>
+                    <li class="text-gray-400">{{dataService.contact}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-dark-600 pt-6 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                © {{ currentYear }} {{dataService.logo}}. All rights reserved.
+            </p>
+            <p class="text-gray-400 text-sm flex items-center">
+                Made with <lucide-angular [img]="heartIcon" class="h-4 w-4 text-red-500 mx-1"></lucide-angular>
+                &nbsp;
+                by {{dataService.name}}
+            </p>
+        </div>
+    </div>
+</footer>

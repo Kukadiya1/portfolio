@@ -1,0 +1,6 @@
+<button *ngIf="isVisible" (click)="scrollToTop()" (mouseenter)="onMouseEnter(btn)" (mouseleave)="onMouseLeave(btn)"
+    (mousedown)="onMouseDown(btn)" (mouseup)="onMouseUp(btn)" #btn
+    class="fixed bottom-6 right-6 p-3 bg-primary-600 dark:bg-primary-500 text-white rounded-full shadow-lg focus:outline-none z-50 transition duration-300"
+    aria-label="Scroll to top">
+    <lucide-angular [img]="arrowUpIcon" size="20"></lucide-angular>
+</button>

@@ -1,0 +1,58 @@
+<section #heroSection id="hero" class="min-h-screen flex flex-col justify-center relative pt-16 pb-12 px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="text-primary-600 dark:text-primary-400 text-lg md:text-xl mb-6 font-medium fade-item">
+                Hello, I'm
+            </p>
+
+            <h1
+                class="text-4xl md:text-6xl lg:text-7xl font-bold font-poppins mb-6 text-dark-800 dark:text-white fade-item">
+                {{dataService.name}}
+            </h1>
+
+            <p class="text-2xl md:text-3xl text-dark-600 dark:text-gray-300 mb-8 font-light fade-item">
+                Full Stack Developer
+            </p>
+
+            <p class="text-lg text-dark-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto fade-item">
+                I build exceptional digital experiences that are fast, accessible, and responsive on all devices.
+            </p>
+
+            <div class="flex justify-center gap-4 mb-16 fade-item md:flex-row flex-col">
+                <a href="#projects" rel="noopener noreferrer"
+                    class="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors duration-300">
+                    View My Work
+                </a>
+
+                <a href="#contact"
+                    class="px-8 py-3 bg-transparent border-2 border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-dark-700 font-medium rounded-lg transition-colors duration-300">
+                    Contact Me
+                </a>
+            </div>
+
+            <div class="flex justify-center space-x-6 mb-16 fade-item">
+                <!-- <a href="#" target="_blank" rel="noopener noreferrer"
+                    class="text-dark-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400"
+                    aria-label="Twitter">
+                    <lucide-angular class="h-6 w-6" [img]="twitterIcon" size="20"></lucide-angular>
+                </a> -->
+                <a href="{{dataService.linkdinUrl}}" target="_blank" rel="noopener noreferrer"
+                    class="text-dark-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400"
+                    aria-label="LinkedIn">
+                    <lucide-angular class="h-6 w-6" [img]="linkedinIcon" size="20"></lucide-angular>
+                </a>
+                <a href="{{dataService.githubUrl}}" target="_blank" rel="noopener noreferrer"
+                    class="text-dark-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400"
+                    aria-label="GitHub">
+                    <lucide-angular class="h-6 w-6" [img]="githubIcon" size="20"></lucide-angular>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 bounce-down">
+        <a href="#about" class="cursor-pointer">
+            <lucide-angular class="h-6 w-6" [img]="chevronDownIcon" size="20"></lucide-angular>
+        </a>
+    </div>
+</section>

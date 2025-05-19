@@ -1,0 +1,63 @@
+<header [ngClass]="{
+    'fixed top-0 w-full z-50 transition-all duration-300': true,
+    'bg-white dark:bg-dark-700 shadow-md py-2': isScrolled,
+    'bg-transparent py-4': !isScrolled
+  }">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <lucide-angular [img]="codeIcon"
+                    class="h-8 w-8 text-primary-600 dark:text-primary-400"></lucide-angular>
+                <span class="ml-2 text-xl font-semibold font-poppins">{{dataService.logo}}</span>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a *ngFor="let link of navLinks" [href]="'#' + link.to"
+                    class="text-dark-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium cursor-pointer transition-colors duration-300">
+                    {{ link.name }}
+                </a>
+            </nav>
+
+            <!-- Buttons -->
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle Button -->
+                <button (click)="themeService.toggleTheme()"
+                    class="p-2 rounded-full bg-gray-100 dark:bg-dark-600 text-dark-700 dark:text-gray-300 focus:outline-none"
+                    [attr.aria-label]="themeService.darkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+                    @if(themeService.darkMode){
+                    <lucide-angular [img]="sunIcon" size="20"></lucide-angular>
+                    }
+                    @else{
+                    <lucide-angular [img]="moonIcon" size="20"></lucide-angular>
+                    }
+                </button>
+
+                <!-- Mobile Menu Toggle -->
+                <button (click)="toggleMenu()" class="md:hidden p-2 rounded-md focus:outline-none"
+                    aria-label="Toggle menu">
+                    @if(menuOpen){
+                    <lucide-angular [img]="xIcon" size="20"></lucide-angular>
+                    }
+                    @else{
+                    <lucide-angular [img]="menuIcon" size="20"></lucide-angular>
+
+                    }
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div *ngIf="menuOpen" class="md:hidden bg-white dark:bg-dark-700 shadow-lg transition-all duration-300">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex flex-col space-y-4">
+                <a *ngFor="let link of navLinks" [href]="'#' + link.to" (click)="closeMenu()"
+                    class="text-dark-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium py-2 cursor-pointer transition-colors duration-300">
+                    {{ link.name }}
+                </a>
+            </nav>
+        </div>
+    </div>
+</header>

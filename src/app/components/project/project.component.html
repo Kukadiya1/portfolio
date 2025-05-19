@@ -1,0 +1,71 @@
+<section id="projects" class="py-20 px-4 sm:px-6 lg:px-8">
+  <div class="container mx-auto">
+    <!-- Title -->
+    <div class="mb-12 text-center section-title">
+      <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 text-dark-800 dark:text-white">
+        My Projects
+      </h2>
+      <div class="w-20 h-1 bg-primary-500 mx-auto mb-6"></div>
+      <p class="text-lg text-dark-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Here are some of my recent projects. Each one is crafted with care and attention to detail.
+      </p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+      @for (category of categories; track $index) {
+      <button class="filter-btn px-5 py-2 capitalize rounded-full transition-colors duration-300" [ngClass]="{
+            'bg-primary-600 text-white': selectedCategory === category,
+            'bg-gray-100 dark:bg-dark-600 text-dark-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-500':
+              selectedCategory !== category
+          }" (click)="setFilter(category)">
+        {{ category }}
+      </button>
+      }
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (project of filteredProjects; track $index) {
+      <div
+        class="project-card bg-white dark:bg-dark-600 rounded-xl overflow-hidden shadow-lg transition-transform duration-500 hover:-translate-y-2">
+        <div class="relative overflow-hidden h-48" (click)="showModal = true;">
+          <img [src]="project.image" [alt]="project.title"
+            class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold font-poppins mb-2 text-dark-800 dark:text-white">
+            {{ project.title }}
+          </h3>
+          <p class="text-dark-600 dark:text-gray-300 mb-4">
+            {{ project.description }}
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            @for (tech of project.technologies; track $index) {
+            <span class="text-xs px-3 py-1 bg-gray-100 dark:bg-dark-500 text-dark-600 dark:text-gray-300 rounded-full">
+              {{ tech }}
+            </span>
+            }
+          </div>
+          <div class="flex justify-between">
+            <a [href]="project.github" target="_blank" rel="noopener noreferrer"
+              class="flex items-center text-dark-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+              <lucide-angular [img]="githubIcon" size="18" class="mr-1"></lucide-angular>
+              <span>Code</span>
+            </a>
+            <a [href]="project.demo" target="_blank" rel="noopener noreferrer"
+              class="flex items-center text-dark-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+              <lucide-angular [img]="externalLinkIcon" size="18" class="mr-1"></lucide-angular>
+              <span>Demo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+<app-project-details [isOpen]="showModal" [project]="selectedProject"
+  (onClose)="showModal = false"></app-project-details>

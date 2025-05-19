@@ -1,0 +1,144 @@
+<section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-dark-700">
+    <div class="container mx-auto">
+        <!-- Header -->
+        <div #heading class="mb-12 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 text-dark-800 dark:text-white">
+                Get In Touch
+            </h2>
+            <div class="w-20 h-1 bg-primary-500 mx-auto mb-6"></div>
+            <p class="text-lg text-dark-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Feel free to reach out if you have a question or want to work together on a project.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+            <!-- Contact Information -->
+            <div #contactInfo class="lg:col-span-2 space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold font-poppins mb-6 text-dark-800 dark:text-white">
+                        Contact Information
+                    </h3>
+                    <p class="text-dark-600 dark:text-gray-300 mb-6">
+                        I'm always open to new opportunities and collaborations. Don't hesitate to reach out!
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="p-3 bg-primary-100 dark:bg-dark-500 rounded-full mr-4">
+                            <lucide-angular [img]="mailIcon"
+                                class="h-5 w-5 text-primary-600 dark:text-primary-400"></lucide-angular>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-dark-800 dark:text-white mb-1">Email</h4>
+                            <p class="text-dark-600 dark:text-gray-300">{{dataService.email}}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="p-3 bg-primary-100 dark:bg-dark-500 rounded-full mr-4">
+                            <lucide-angular [img]="phoneIcon"
+                                class="h-5 w-5 text-primary-600 dark:text-primary-400"></lucide-angular>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-dark-800 dark:text-white mb-1">Phone</h4>
+                            <p class="text-dark-600 dark:text-gray-300">{{dataService.contact}}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="p-3 bg-primary-100 dark:bg-dark-500 rounded-full mr-4">
+                            <lucide-angular [img]="mapPinIcon"
+                                class="h-5 w-5 text-primary-600 dark:text-primary-400"></lucide-angular>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-dark-800 dark:text-white mb-1">Location</h4>
+                            <p class="text-dark-600 dark:text-gray-300">{{dataService.location}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div #contactFormEl class="lg:col-span-3 bg-white dark:bg-dark-600 rounded-xl p-6 md:p-8 shadow-lg">
+                <div *ngIf="submitStatus === 'success'" class="text-center py-8">
+                    <div class="bg-green-100 dark:bg-green-900/30 p-4 rounded-lg mb-6">
+                        <lucide-angular [img]="paperPlanIcon"
+                            class="h-5 w-5 text-primary-600 dark:text-primary-400"></lucide-angular>
+                        <i class="la la-paper-plane text-4xl text-green-600 dark:text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-green-700 dark:text-green-400 mb-2">
+                            Message Sent Successfully!
+                        </h3>
+                        <p class="text-green-600 dark:text-green-500">
+                            Thank you for reaching out. I'll get back to you soon.
+                        </p>
+                    </div>
+                    <button (click)="submitStatus = null"
+                        class="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors duration-300">
+                        Send Another Message
+                    </button>
+                </div>
+
+                <form *ngIf="submitStatus !== 'success'" [formGroup]="contactForm" (ngSubmit)="onSubmit()"
+                    class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-dark-700 dark:text-gray-300 mb-2">Your Name</label>
+                            <input formControlName="name" type="text" id="name" placeholder="John Doe"
+                                class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-dark-500 text-dark-700 dark:text-white border"
+                                [ngClass]="{
+                  'border-red-500': contactForm.get('name')?.invalid && contactForm.get('name')?.touched,
+                  'border-gray-200 dark:border-dark-400': !(contactForm.get('name')?.invalid && contactForm.get('name')?.touched)
+                }" />
+                            <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+                                class="mt-1 text-red-500 text-sm">Name is required</div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-dark-700 dark:text-gray-300 mb-2">Your Email</label>
+                            <input formControlName="email" type="email" id="email" placeholder="johndoe@example.com"
+                                class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-dark-500 text-dark-700 dark:text-white border"
+                                [ngClass]="{
+                  'border-red-500': contactForm.get('email')?.invalid && contactForm.get('email')?.touched,
+                  'border-gray-200 dark:border-dark-400': !(contactForm.get('email')?.invalid && contactForm.get('email')?.touched)
+                }" />
+                            <div *ngIf="contactForm.get('email')?.errors?.['required'] && contactForm.get('email')?.touched"
+                                class="mt-1 text-red-500 text-sm">Email is required</div>
+                            <div *ngIf="contactForm.get('email')?.errors?.['email'] && contactForm.get('email')?.touched"
+                                class="mt-1 text-red-500 text-sm">Enter a valid email</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="subject" class="block text-dark-700 dark:text-gray-300 mb-2">Subject
+                            (Optional)</label>
+                        <input formControlName="subject" type="text" id="subject" placeholder="Project Inquiry"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-dark-400 bg-gray-50 dark:bg-dark-500 text-dark-700 dark:text-white" />
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-dark-700 dark:text-gray-300 mb-2">Your Message</label>
+                        <textarea formControlName="message" rows="5" id="message"
+                            placeholder="Hello, I'd like to talk about..."
+                            class="w-full px-4 py-3 rounded-lg border bg-gray-50 dark:bg-dark-500 text-dark-700 dark:text-white"
+                            [ngClass]="{
+                'border-red-500': contactForm.get('message')?.invalid && contactForm.get('message')?.touched,
+                'border-gray-200 dark:border-dark-400': !(contactForm.get('message')?.invalid && contactForm.get('message')?.touched)
+              }"></textarea>
+                        <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+                            class="mt-1 text-red-500 text-sm">Message is required</div>
+                    </div>
+
+                    <button type="submit" [disabled]="isSubmitting"
+                        class="w-full py-3 px-6 rounded-lg text-white font-medium transition-colors duration-300"
+                        [ngClass]="{
+              'bg-primary-400 cursor-not-allowed': isSubmitting,
+              'bg-primary-600 hover:bg-primary-700': !isSubmitting
+            }">
+                        {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,62 @@
+<div *ngIf="isOpen && project"
+    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 animate-fadeIn"
+    (click)="closeModal()">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
+        (click)="stopPropagation($event)">
+        <!-- Header -->
+        <div
+            class="sticky top-0 bg-white dark:bg-gray-800 z-10 flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+                {{ project?.title }}
+            </h2>
+            <button (click)="closeModal()"
+                class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Close modal">
+                <lucide-angular [img]="xIcon"
+                    class="la la-times text-gray-600 dark:text-gray-300 text-xl"></lucide-angular>
+            </button>
+        </div>
+
+        <!-- Body -->
+        <div class="p-6">
+            <!-- Overview -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Overview</h3>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ project?.description?.overview }}</p>
+            </div>
+
+            <!-- Key Features -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Key Features</h3>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li *ngFor="let feature of project?.description?.features" class="text-gray-700 dark:text-gray-300">
+                        {{ feature }}
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Tech Stack</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span *ngFor="let tech of project?.description?.techStack"
+                        class="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100 rounded-full text-sm">
+                        {{ tech }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Challenges -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Challenges Solved</h3>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ project?.description?.challenges }}</p>
+            </div>
+
+            <!-- Outcome -->
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Outcome & Impact</h3>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ project?.description?.outcome }}</p>
+            </div>
+        </div>
+    </div>
+</div>
